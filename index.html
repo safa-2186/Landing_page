@@ -3,9 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Landing page</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+    <style type="text/tailwindcss">
+      @theme {
+        /*FONTS*/
+        --font-roboto-mono: "Roboto Mono", monospace;
+        --font-inter: "Inter", sans-serif;
+      }
+    </style>
 </head>
 <body>
+    <header class="flex justify-between px-20 mt-10">
+        <div class="text-[#7E8A4F] font-roboto-mono font-medium text-2xl">COSME</div>
+        <nav>
+            <ul class="text-black font-inter flex gap-10 ">
+                <li><a href="#Product" class="hover:text-[#7E8A4F]">Product</a></li>
+                <li><a href="#Features" class="hover:text-[#7E8A4F]">Features</a></li>
+                <li><a href="Reviews" class="hover:text-[#7E8A4F]">Reviews</a></li>
+                <li><a href="About us" class="hover:text-[#7E8A4F]">About us</a></li>
+            </ul>
+        </nav>
+        <div class="flex gap-6">
+            <div><img src="assets/search.svg"></div>
+            <div><img src="assets/shopping_bag.svg"></div>
+            <div><img src="assets/menu.svg"></div>
+        </div>
+    </header>
     
 </body>
 </html>
