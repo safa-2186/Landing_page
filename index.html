@@ -20,9 +20,12 @@
     </style>
 </head>
 <body>
-    <header class="flex justify-between px-20 mt-10">
-        <div class="text-[#7E8A4F] font-roboto-mono font-medium text-2xl">COSME</div>
-        <nav>
+    <header class="relative flex justify-between items-center px-6 md:px-20 mt-10">
+        <div class="text-[#7E8A4F] font-roboto-mono flex items-underline font-normal tracking-tight">
+            <span class="text-4xl">COSME</span>
+            <span class="text-sm">TIC</span>
+        </div>
+        <nav class="hidden md:block">
             <ul class="text-black font-inter flex gap-10 ">
                 <li><a href="#Product" class="hover:text-[#7E8A4F]">Product</a></li>
                 <li><a href="#Features" class="hover:text-[#7E8A4F]">Features</a></li>
@@ -30,12 +33,86 @@
                 <li><a href="About us" class="hover:text-[#7E8A4F]">About us</a></li>
             </ul>
         </nav>
-        <div class="flex gap-6">
+        <div class="flex gap-6 items-center">
             <div><img src="assets/search.svg"></div>
             <div><img src="assets/shopping_bag.svg"></div>
-            <div><img src="assets/menu.svg"></div>
+            <div class="md:hidden"><img src="assets/menu.svg" id="menuBtn" class="cursor-pointer"></div>
         </div>
+
+       
+        
+        <nav id="mobileMenu" class="hidden absolute top-full left-0 w-full bg-white shadow-lg md:hidden z-50">
+          <ul class="flex flex-col text-black font-inter">
+            <li><a href="#Product" class="block px-6 py-4 hover:text-[#7E8A4F] hover:bg-gray-50">Product</a></li>
+            <li><a href="#Features" class="block px-6 py-4 hover:text-[#7E8A4F] hover:bg-gray-50">Features</a></li>
+            <li><a href="#Reviews" class="block px-6 py-4 hover:text-[#7E8A4F] hover:bg-gray-50">Reviews</a></li>
+            <li><a href="#About" class="block px-6 py-4 hover:text-[#7E8A4F] hover:bg-gray-50">About us</a></li>
+          </ul>
+        </nav>
+
     </header>
+
+    <section class="max-w-[1280px] mx-auto px-6 md:px-20 grid grid-cols-1 md:grid-cols-2 items-center gap-16 mt-10">
+
+        <div class="max-w-[485px]">
+            <span class="text-[#686963] text-lg font-roboto-mono ">Discover the Nature with</span>
+            <div class="text-[#7E8A4F] font-roboto-mono flex items-underline font-medium tracking-tight mt-6">
+               <span class="text-7xl">COSME</span>
+               <span class="text-lg">TIC</span>
+            </div>
+            <p class="mt-6 text-[#484731] text-base">At PureGlow Skincare, we believe in the power of nature to nurture and restore your skin. 
+               Our products are crafted with the purest organic ingredients, harnessing the gifts of the earth to create a radiant,
+                healthy glow for your skin.</p>
+            <button class="bg-[#7E8A4F] text-white px-12 py-3 mt-6 shadow-md hover:shadow-lg hover:bg-[#6b7643] cursor-pointer">Learn More</button>
+        </div>
+
+        <div class="max-w-[600px] md:justify-self-end">
+            <img src="assets/cosme tic.png" class="rounded-2xl shadow-2xl w-full object-cover" />
+        </div>
+    </section>
+
+    <section class="max-w-[1280px] mx-auto px-6 md:px-20 flex flex-col md:flex-row justify-between items-center gap-10 mt-24">
+
+        <div class="font-inter text-3xl font-medium max-w-[500px]">Trusted by over 350,000+ Clients worldwide since 2008</div>
+
+            <div class="grid grid-cols-2 gap-12">
+                <div>
+                    <div class="font-medium text-3xl font-roboto-mono">6M+</div>
+                    <span class="text-yellow-500 text-2xl">★★★★★</span>
+                    <div class="font-medium text-xl">Worldwide Product</div>
+                    <div class="font-medium text-xl">sale per year</div>
+                </div>
+                <div>
+                    <div class="font-medium text-3xl">4.6</div>
+                    <span class="text-yellow-500 text-2xl">★★★★★</span>
+                    <div class="font-medium text-xl">3,350 Ratings</div>
+                    <div class="font-medium text-xl">Worldwide</div>
+                </div>
+            </div>
+    </section>
+
+    <section class="max-w-[1280px] mx-auto px-6 mt-40 md:px-20 flex">
+       <div class="max-w-[600px] md:justify-self-start">
+        <img src="assets/pic2.png" class="rounded-2xl shadow-2xl w-full object-cover">
+       </div> 
+       <div>
+         <h1 class="text-[#7E8A4F] text-7xl font-inter">Best Skin Cleanser</h1> 
+         <p class="text-[#484731] text-base">Our Organic Skin Cleanser is a testament to purity. 
+            Crafted with the finest organic ingredients, this gentle yet effective cleanser is designed to delicately purify and revitalize your skin without any harsh chemicals. 
+            Made with 100% natural and organic components, this cleanser harnesses the power of botanical extracts, vitamins, and antioxidants to cleanse and nourish your skin. 
+            Specially formulated to be gentle on all skin types, while effectively removing impurities and excess oils.</p>
+          
+       </div>
+    </section>
+
+    <script>
+        const menuBtn = document.getElementById('menuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+    </script>
     
 </body>
 </html>
