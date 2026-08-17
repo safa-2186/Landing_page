@@ -205,11 +205,75 @@
         
     </section>
 
+
+    <section class="mt-24 bg-[#E1E5D2]">
+    <div class="font-lora max-w-[900px] mx-auto px-6 md:px-20 py-20">
+
+        <h1 class="text-[#7E8A4F] text-4xl md:text-5xl font-lora font-semibold text-center mb-16">Frequently Asked Questions</h1>
+
+        <div class="divide-y divide-[#E1E5D2]">
+
+            <div class="faq-item py-6">
+                <button class="faq-toggle w-full flex items-center justify-between text-left cursor-pointer">
+                    <span class="text-[#484731] text-lg font-medium">What inspired the philosophy behind COSMETIC?</span>
+                    <svg class="faq-icon w-5 h-5 text-[#7E8A4F] shrink-0 transition-transform duration-300" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+                </button>
+                <p class="faq-answer hidden text-[#686963] text-sm mt-4 leading-relaxed">
+                    We believe skincare should work with nature, not against it. Every product starts with organic ingredients chosen for both their effectiveness and their gentleness on skin.
+                </p>
+            </div>
+
+            <div class="faq-item py-6">
+                <button class="faq-toggle w-full flex items-center justify-between text-left cursor-pointer">
+                    <span class="text-[#484731] text-lg font-medium">Are your products suitable for all skin types?</span>
+                    <svg class="faq-icon w-5 h-5 text-[#7E8A4F] shrink-0 transition-transform duration-300" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+                </button>
+                <p class="faq-answer hidden text-[#686963] text-sm mt-4 leading-relaxed">
+                    Yes, our formulas are designed to be gentle enough for sensitive skin while still being effective for oily, dry, and combination skin types.
+                </p>
+            </div>
+
+            <div class="faq-item py-6">
+                <button class="faq-toggle w-full flex items-center justify-between text-left cursor-pointer">
+                    <span class="text-[#484731] text-lg font-medium">Where are your products made?</span>
+                    <svg class="faq-icon w-5 h-5 text-[#7E8A4F] shrink-0 transition-transform duration-300" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+                </button>
+                <p class="faq-answer hidden text-[#686963] text-sm mt-4 leading-relaxed">
+                    Every product is crafted in small batches to ensure quality and freshness, using responsibly sourced ingredients from trusted growers.
+                </p>
+            </div>
+
+            <div class="faq-item py-6">
+                <button class="faq-toggle w-full flex items-center justify-between text-left cursor-pointer">
+                    <span class="text-[#484731] text-lg font-medium">Are your products cruelty-free and vegan?</span>
+                    <svg class="faq-icon w-5 h-5 text-[#7E8A4F] shrink-0 transition-transform duration-300" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+                </button>
+                <p class="faq-answer hidden text-[#686963] text-sm mt-4 leading-relaxed">
+                    Absolutely. We never test on animals, and all our formulas are 100% vegan and cruelty-free.
+                </p>
+            </div>
+
+            <div class="faq-item py-6">
+                <button class="faq-toggle w-full flex items-center justify-between text-left cursor-pointer">
+                    <span class="text-[#484731] text-lg font-medium">How long until we deliver your product?</span>
+                    <svg class="faq-icon w-5 h-5 text-[#7E8A4F] shrink-0 transition-transform duration-300" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+                </button>
+                <p class="faq-answer hidden text-[#686963] text-sm mt-4 leading-relaxed">
+                    Orders typically arrive within 3-5 business days, depending on your location. You'll receive tracking info as soon as it ships.
+                </p>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+
     <section class="font-lora max-w-[1280px] mx-auto px-6 md:px-20 mt-24">
 
         <div>
-            <h2 class="text-[#7E8A4F] text-3xl md:text-4xl font-lora font-semibold mb-10 text-center">Testimonials</h2>
-            <p class="text-[#686963] text-sm text-center max-w-[600px] mx-auto mb-10">
+            <h2 class="text-[#7E8A4F] text-5xl md:text-6xl font-lora font-semibold text-center">Testimonials</h2>
+            <p class="text-[#686963] mt-8 font-lora text-sm text-center max-w-[600px] mx-auto mb-10">
                 Don't just take our word for it — here's what real customers are saying about their experience with our skincare.
             </p>
 
@@ -361,7 +425,17 @@
             mobileMenu.classList.toggle('hidden');
         });
 
-        /*Subscribe*/
+        /*FAQ*/
+        document.querySelectorAll('.faq-toggle').forEach(btn => {
+          btn.addEventListener('click', () => {
+            const item = btn.closest('.faq-item');
+            const answer = item.querySelector('.faq-answer');
+            const icon = btn.querySelector('.faq-icon');
+
+            answer.classList.toggle('hidden');
+            icon.classList.toggle('rotate-180');
+          });
+        });
 
 
     </script>
