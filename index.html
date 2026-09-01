@@ -67,6 +67,35 @@
 
     </header>
 
+    <!--Cart overlay-->
+    <div id="cartOverlay" class="fixed inset-0 bg-[#00000066] opacity-0 pointer-events-none 
+    transition-opacityduration-300 z-40"></div>
+
+    <!--Cart panel-->
+    <div id="cartPanel" class="fixed top-0 right-0 h-full w-full max-w-sm bg-white text-[#484731]
+    translate-x-full transition-transform duration-300 ease-out z-50 p-8 shadow-2xl font-lora overflow-y-auto">
+
+       <button id="cartCloseBtn" aria-label="Close cart" class="float-right text-2xl text-[#686963] hover:text-[#484731] cursor-pointer">&times;</button>
+       <h2 class="text-2xl text-[#7E8A4F] font-medium ">Shopping Cart</h2>
+       <div id="cartItemsWrapper" class="mt-10">
+
+        <p id="cartEmptyMsg" class="text-sm text-[#686963]">Your cart is currently empty.</p>
+        <ul id="cartItemsList" class="space-y-6 hidden"></ul>
+
+       </div>
+
+       <div id="cartFooter" class="hidden mt-8 pt-6 border-t border-[#E1E5D2]">
+
+          <div class="flex justify-between text-base font-medium">
+            <span>Subtotal</span>
+            <span id="cartSubtotal">$0.00</span>
+          </div>
+          <button class="w-full bg-[#7E8A4F] text-white py-3 mt-6 shadow-md hover:shadow-lg hover:bg-[#6b7643] cursor-pointer transition">Checkout</button>
+
+       </div>
+
+    </div>
+
     <section class="max-w-[1280px] mx-auto px-6 md:px-20 grid grid-cols-1 md:grid-cols-2 items-center gap-16 mt-10">
 
         <div class="max-w-[485px]">
@@ -466,6 +495,9 @@
 
 
     <script>
+
+        /*Mobile Menu*/
+
         const menuBtn = document.getElementById('menuBtn');
         const mobileMenu = document.getElementById('mobileMenu');
 
@@ -474,6 +506,7 @@
         });
 
         /*FAQ*/
+
         document.querySelectorAll('.faq-toggle').forEach(btn => {
           btn.addEventListener('click', () => {
             const item = btn.closest('.faq-item');
@@ -484,6 +517,104 @@
             icon.classList.toggle('rotate-180');
           });
         });
+
+        /*Cart*/
+
+        const cartBtn = document.getElementById('cartBtn');
+        const cartCloseBtn = document.getElementById('cartCloseBtn');
+        const cartPanel = document.getElementById('cartPanel');
+        const cartOverlay = document.getElementById('cartOverlay');
+        const cartCount = document.getElementById('cartCount');
+        const cartEmptyMsg = document.getElementById('cartEmptyMsg');
+        const cartItemsList = document.getElementById('cartItemsList');
+        const cartFooter = document.getElementById('cartFooter');
+        const cartSubtotal = document.getElementById('cartSubtotal');
+
+        let cart = [];
+
+        function openCart() {
+            cartPanel.classList.remove('translate-x-full');
+            cartOverlay.classList.remove('opacity-0', 'pointer-events-none');
+            cartOverlay.classList.add('opacity-100', 'pointer-events-auto');
+        }
+
+        function closeCart() {
+            cartPanel.classList.add('translate-x-full');
+            cartOverlay.classList.add('opacity-0', 'pointer-events-none');
+            cartOverlay.classList.remove('opacity-100', 'pointer-events-auto');
+
+        }
+
+
+        function renderCart() {
+            if (cart.length === 0) {
+                cartEmptyMsg.classList.remove('hidden');
+                cartItemsList.classList.add('hidden');
+                cartFooter.classList.add('hidden');
+                cartCount.classList.add('hidden');
+                cartCount.classList.remove('flex');
+                return;
+            }
+
+            cartEmptyMsg.classList.add('hidden');
+            cartItemsList.classList.remove('hidden');
+            cartFooter.classList.remove('hidden');
+            cartCount.classList.remove('hidden');
+            cartCount.classList.add('flex');
+
+            cartItemsList.innerHTML = '';
+            let total = 0;
+            let itemCount = 0;
+
+            cart.forEach((item, index) => {
+                total += item.price * item.qty;
+                itemCount += item.qty;
+
+                const li = document.createElement('li');
+                li.className = 'flex items-center gap-4';
+                li.innerHTML =`
+                    <img src="${item.image}" class="w-16 h-16 rounded-md object-cover">
+                    <div class="flex-1">
+                        <div class="text-sm font-medium text-[#484731]">${item.name}</div>
+                        <div class="text-xs text-[#686963] mt-1">Qty: ${item.qty}</div>
+                    </div>
+                    <div class="text-sm font-medium">$${(item.price * item.qty).toFixed(2)}</div>
+                    <button data-index="${index}" class="cart-remove-btn text-[#D9534F] text-xs hover:underline cursor-pointer">Remove</button>
+                `;
+                cartItemsList.appendChild(li);
+            });
+
+            cartSubtotal.textContent = `$${total.toFixed(2)}`;
+            cartCount.textContent = itemCount;
+
+            document.querySelectorAll('.cart-remove-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    cart.splice(parseInt(btn.dataset.index), 1);
+                    renderCart();
+                });
+            });
+
+        }
+
+
+        function addToCart (product) {
+            const existing = cart.find(item => item.name === product.name);
+
+            if (existing) {
+                existing.qty += 1;
+            } else {
+                cart.push({...product, qty: 1});
+            }
+            renderCart();
+            openCart();
+        }
+
+
+        cartBtn.addEventListener('click', openCart);
+        cartCloseBtn.addEventListener('click', closeCart);
+        cartOverlay.addEventListener('click', closeCart);
+
+        renderCart();
 
 
     </script>
