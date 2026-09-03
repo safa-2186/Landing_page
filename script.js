@@ -10,7 +10,6 @@ menuBtn.addEventListener('click', () => {
 
 
 
-
 /*FAQ*/
 
 document.querySelectorAll('.faq-toggle').forEach(btn => {
@@ -24,12 +23,6 @@ document.querySelectorAll('.faq-toggle').forEach(btn => {
         });
     });     
     
-
-
-
-
-
-
     
 
 /*Cart*/
@@ -129,3 +122,17 @@ cartCloseBtn.addEventListener('click', closeCart);
 cartOverlay.addEventListener('click', closeCart);
 
 renderCart();
+
+
+
+/*Shop-Products*/
+
+document.querySelectorAll('.add-to-cart-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+        addToCart({
+            name: btn.dataset.name,
+            price: parseFloat(btn.dataset.price),
+            image: btn.dataset.image
+        });
+    });
+});
